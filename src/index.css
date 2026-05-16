@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════
+   FermaSense AI — Design System
+   Futuristic Biotech Dark Theme
+   ═══════════════════════════════════════════════════ */
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── Dark Palette ─────────────────────────────── */
+  --color-dark-950: #030712;
+  --color-dark-900: #0a0f1e;
+  --color-dark-800: #0f172a;
+  --color-dark-700: #1a2332;
+  --color-dark-600: #243044;
+  --color-dark-500: #334155;
+  --color-dark-400: #475569;
+
+  /* ── Neon Accents ─────────────────────────────── */
+  --color-neon-cyan: #06ffd1;
+  --color-neon-blue: #3b82f6;
+  --color-neon-purple: #a855f7;
+  --color-neon-pink: #ec4899;
+  --color-neon-orange: #f97316;
+  --color-neon-green: #22c55e;
+  --color-neon-red: #ef4444;
+  --color-neon-yellow: #eab308;
+
+  /* ── Glass ────────────────────────────────────── */
+  --color-glass-light: rgba(255,255,255,0.05);
+  --color-glass-medium: rgba(255,255,255,0.08);
+  --color-glass-heavy: rgba(255,255,255,0.12);
+}
+
+/* ── Base ──────────────────────────────────────── */
+body {
+  @apply bg-dark-950 text-gray-100 font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Glass Card ────────────────────────────────── */
+.glass-card {
+  background: linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(10,15,30,0.9) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(6,255,209,0.15);
+  box-shadow: 0 0 30px rgba(6,255,209,0.05);
+}
+
+/* ── Neon Glow Utilities ───────────────────────── */
+.glow-cyan { box-shadow: 0 0 20px rgba(6,255,209,0.15), 0 0 60px rgba(6,255,209,0.05); }
+.glow-blue { box-shadow: 0 0 20px rgba(59,130,246,0.15), 0 0 60px rgba(59,130,246,0.05); }
+.glow-purple { box-shadow: 0 0 20px rgba(168,85,247,0.15), 0 0 60px rgba(168,85,247,0.05); }
+.glow-orange { box-shadow: 0 0 20px rgba(249,115,22,0.15), 0 0 60px rgba(249,115,22,0.05); }
+.glow-red { box-shadow: 0 0 20px rgba(239,68,68,0.2), 0 0 60px rgba(239,68,68,0.05); }
+.glow-green { box-shadow: 0 0 20px rgba(34,197,94,0.15), 0 0 60px rgba(34,197,94,0.05); }
+
+.text-glow-cyan { text-shadow: 0 0 20px rgba(6,255,209,0.5); }
+.text-glow-blue { text-shadow: 0 0 20px rgba(59,130,246,0.5); }
+
+/* ── Mesh Background ──────────────────────────── */
+.bg-mesh {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(6,255,209,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(168,85,247,0.03) 0%, transparent 60%);
+}
+
+/* ── Gradient Text ─────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #06ffd1, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(135deg, #f97316, #ef4444, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Animated Border ──────────────────────────── */
+.border-glow {
+  position: relative;
+}
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(6,255,209,0.3), rgba(59,130,246,0.3), rgba(168,85,247,0.3));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* ── Pulse Dot ─────────────────────────────────── */
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: inherit;
+  animation: pulse-ring 2s ease-out infinite;
+  opacity: 0;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ── Skeleton Loading ──────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Floating Particles BG ─────────────────────── */
+.particles-bg {
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(6,255,209,0.15), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(59,130,246,0.1), transparent),
+    radial-gradient(2px 2px at 80% 40%, rgba(168,85,247,0.1), transparent),
+    radial-gradient(1px 1px at 60% 20%, rgba(6,255,209,0.2), transparent),
+    radial-gradient(1px 1px at 30% 60%, rgba(59,130,246,0.15), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(168,85,247,0.12), transparent),
+    radial-gradient(1px 1px at 10% 90%, rgba(6,255,209,0.1), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(59,130,246,0.1), transparent);
+}
+
+/* ── Form Input Styling ───────────────────────── */
+.form-input {
+  @apply w-full bg-dark-800/80 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 outline-none transition-all duration-300;
+}
+.form-input:focus {
+  @apply border-neon-cyan/40;
+  box-shadow: 0 0 0 3px rgba(6,255,209,0.08), 0 0 20px rgba(6,255,209,0.05);
+}
+
+/* ── Neon Button ──────────────────────────────── */
+.btn-neon {
+  @apply px-6 py-3 bg-gradient-to-r from-neon-cyan/20 to-neon-blue/20 border border-neon-cyan/30 rounded-xl text-neon-cyan font-semibold transition-all duration-300;
+}
+.btn-neon:hover {
+  @apply from-neon-cyan/30 to-neon-blue/30 border-neon-cyan/50;
+  box-shadow: 0 0 30px rgba(6,255,209,0.2);
+}
+
+/* ── Badge ─────────────────────────────────────── */
+.badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+}
